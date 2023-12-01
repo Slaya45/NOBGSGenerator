@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <title>NOBGS Random Number Generator</title>
+  
+</head>
+<body>
+
+
+    <div id="face">
+  <h2>N.O.B.G.S</h2> <h1>Random Number Generator</h1>
+  <button onclick="generateRandomNumber()">Generate Random Number</button>
+
+  <div id="customization">
+
+    <label for="minInput">Min:</label>
+    <input type="number" id="minInput" value="1">
+    <label for="maxInput">Max:</label>
+    <input type="number" id="maxInput" value="100">
+  </div>
+
+  <div id="result"></div>
+</div>
+
+
+
+
+<!--Space Space Space Space Space Space Space Space Space Space Space Space Space Space Space Space Space Space Space Space --->
+<!--Space Space Space Space Space Space Space Space Space Space Space Space Space Space Space Space Space Space Space Space --->
+<!--Space Space Space Space Space Space Space Space Space Space Space Space Space Space Space Space Space Space Space Space --->
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/seedrandom/3.0.5/seedrandom.min.js"></script>
+<script>
+  function simulateTrueRandomness(min, max) {
+    const seed = new Date().getTime();
+    const rng = new Math.seedrandom(seed);
+    return Math.floor(rng() * (max - min + 1)) + min;
+  }
+
+  function generateRandomNumber() {
+    const min = parseInt(document.getElementById('minInput').value, 10);
+    const max = parseInt(document.getElementById('maxInput').value, 10);
+
+    if (min >= max) {
+      alert('Please enter a valid range. The minimum value must be less than the maximum value.');
+      return;
+    }
+
+    const resultElement = document.getElementById('result');
+    const randomNumber = simulateTrueRandomness(min, max);
+
+    resultElement.textContent = randomNumber;
+  }
+</script>
+
+</body>
+</html>
